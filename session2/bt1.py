@@ -33,3 +33,4 @@ print("Triage process completed.")
 # cuối cùng là GREEN
 # Làm như vậy thì khi nhập nhịp tim 135, chương trình sẽ nhận ra đây là trường hợp nguy hiểm và đưa vào mức RED ngay.
 # Sau khi sửa thì hệ thống sẽ phân loại đúng hơn và tránh bị sai ở những trường hợp nhịp tim quá cao.
+#-------------------------------------------------------------------------------------------------------------------------------------------------
