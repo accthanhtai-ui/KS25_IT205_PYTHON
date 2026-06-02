@@ -1,101 +1,92 @@
-playlist = []
-
+music_name = ['đi theo bong mặt trời','hãy trao cho anh','10 ngàn năm']
 while True:
-    print("\n===== Playlist Management System =====")
-    print("""1. Thêm bài hát vào danh sách phát
-2. Xem danh sách phát
-3. Xóa bài hát khỏi danh sách phát
-4. Sắp xếp và Trích xuất danh sách
-5. Thoát chương trình
-    """)
-    choice = input("Nhập vào lựa chọn của bạn: ")
-
+    print('''
++============MENU QUẢN LÝ DANH SÁCH PHÁT============+
++ 1.Thêm bài hát vào danh sách phát                 +
++ 2.Xem danh sách phát                              + 
++ 3.Xóa bài hát khỏi danh sách                      +  
++ 4.Xắp xếp và trích xuất danh sách                 +    
++ 5.Thoát trương trình                              +
++===================================================+                
+''')
+    choice = input('nhập vào chức năng cần làm: ')
     match choice:
-        case "1":
-            print("\n*** Thêm bài hát ***")
-            print("1. Thêm vào cuối danh sách")
-            print("2. Chèn vào vị trí bất kỳ")
-            sub_choice = input("Nhập lựa chọn: ")
-            song_name = input("Nhập tên bài hát: ")
-
-            match sub_choice:
-                case "1":
-                    playlist.append(song_name)
-                    print(f"Đã thêm thành công! Số lượng bài hát hiện tại: {len(playlist)}")
-                case "2":
-                    try:
-                        index = int(input("Nhập vị trí muốn chèn (bắt đầu từ 1): ")) - 1
-                        if 0 <= index <= len(playlist):
-                            playlist.insert(index, song_name)
-                            print(f"Đã thêm thành công! Số lượng bài hát hiện tại: {len(playlist)}")
-                        else:
-                            print("Vị trí không hợp lệ.")
-                    except ValueError:
-                        print("Vui lòng nhập số nguyên cho vị trí.")
-                case _:
-                    print("Lựa chọn không hợp lệ!")
-
-        case "2":
-            if not playlist:
-                print("Danh sách phát hiện đang trống!")
+        case '1':
+            while True:
+                print('''-----thêm bài hát-----
+1.thêm vào cuối danh sách
+2.chèn vào vị trí cụ thể''')
+                select = input('nhập vào lựa chọn: ')
+                music_name_new = input('nhập vào tên bài hát: ')
+                match select:
+                    case '1':
+                        music_name.append(music_name_new)
+                        print('thêm bài hát mới thành công!')
+                        break
+                    case '2':
+                        music_name.insert(music_name_new)
+                        print('chèn bài hát vào thành công!')
+                        break
+                    case _:
+                        print('chỉ được chọn 1 hoặc 2,chọn lại')
+                        continue
+        case '2':
+            if len(music_name) == 0:
+                print('danh sách đang trống không có bài hát nào')
+                continue
             else:
-                print("\n--- Danh sách phát ---")
-                for i, song in enumerate(playlist, start=1):
-                    print(f"{i}. {song}")
-
-        case "3":
-            if not playlist:
-                print("Danh sách phát hiện đang trống!")
-                continue
-            print("\n*** Xóa bài hát ***")
-            print("1. Xóa theo tên")
-            print("2. Xóa theo số thứ tự")
-            sub_choice = input("Nhập lựa chọn: ")
-
-            match sub_choice:
-                case "1":
-                    song_name = input("Nhập tên bài hát cần xóa: ")
-                    if song_name in playlist:
-                        playlist.remove(song_name)
-                        print(f"Đã xóa bài hát '{song_name}' khỏi danh sách.")
-                    else:
-                        print("Không tìm thấy bài hát trong danh sách phát.")
-                case "2":
-                    try:
-                        index = int(input("Nhập số thứ tự bài hát cần xóa: ")) - 1
-                        if 0 <= index < len(playlist):
-                            removed_song = playlist.pop(index)
-                            print(f"Đã xóa bài hát '{removed_song}' khỏi danh sách.")
+                for i,vl in enumerate(music_name,start=1):
+                    print(f'bài hát {i}: {vl}')
+        case '3':
+            while True:
+                print('''-----xóa bài hát-----
+1.xóa bài hát theo tên
+2.xóa bài hát theo vị trí''')
+                select = input('nhập vào lựa chọn: ')
+                match select:
+                    case '1':
+                        del_music = input('nhập vào tên bài hát: ')
+                        if del_music in music_name:
+                            music_name.remove(del_music)
+                            print('xóa bài hát mới thành công!')
+                            break
                         else:
-                            print("Vị trí không hợp lệ.")
-                    except ValueError:
-                        print("Vui lòng nhập số nguyên cho vị trí.")
-                case _:
-                    print("Lựa chọn không hợp lệ!")
-
-        case "4":
-            if not playlist:
-                print("Danh sách phát hiện đang trống!")
-                continue
-            print("\n*** Sắp xếp & Trích xuất ***")
-            print("1. Sắp xếp theo bảng chữ cái")
-            print("2. Nghe thử 3 bài hát đầu tiên")
-            sub_choice = input("Nhập lựa chọn: ")
-
-            match sub_choice:
-                case "1":
-                    playlist.sort()
-                    print("Danh sách đã được sắp xếp theo bảng chữ cái.")
-                case "2":
-                    print("\n--- 3 bài hát đầu tiên ---")
-                    for i, song in enumerate(playlist[:3], start=1):
-                        print(f"{i}. {song}")
-                case _:
-                    print("Lựa chọn không hợp lệ!")
-
-        case "5":
-            print("Cảm ơn bạn đã sử dụng dịch vụ. Tạm biệt!")
-            break
-
+                            print('tên bài hát không có trong danh sách,nhập lại')
+                            continue
+                    case '2':
+                        del_index_music = int(input('nhập vào vị trí cần xóa: ')) - 1
+                        if 0 < del_index_music and del_index_music <= len(music_name):
+                            remove_music = music_name.pop(del_index_music)
+                            print('xóa bài hát vào thành công!')
+                            print(f'bài hát bạn vừa xóa là:  {remove_music}')
+                            break
+                        else:
+                            print('vi trí nằm ngoài phạm vi hãy nhập lại')
+                            continue
+                    case _:
+                        print('chỉ được chọn 1 hoặc 2,chọn lại')
+                        continue
+        case '4':
+            while True:
+                print('''-----xắp xếp    bài hát-----
+1.sắp xếp bài hát theo thứ tự từ A-Z
+2.Hiển thị 3 bài hát đầu tiên''')
+                select = input('nhập vào lựa chọn: ')
+                match select:
+                    case '1':
+                        music_name.sort()
+                        print('sắp xếp bài hát mới thành công!')
+                        break
+                    case '2':
+                        if len(music_name) == 0:
+                            print('danh sách đang trống không có bài hát nào')
+                            continue
+                        else:
+                            for i,vl in enumerate(music_name[:3],start=1):
+                                print(f'bài hát {i}: {vl}')
+                    case _:
+                        print('chỉ được chọn 1 hoặc 2,chọn lại')
+                        continue
         case _:
-            print("Lựa chọn không hợp lệ!")
+            print('chọn đúng dùm cái')
+            continue
