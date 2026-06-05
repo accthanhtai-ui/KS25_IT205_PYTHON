@@ -19,7 +19,7 @@ while True:
 =============================================
 |1. Xem chi tiết giỏ hàng và tính tổng tiền |
 |2. Thêm sản phẩm mới/cộng dồn số lượng     |
-|3. Cập nhật số lượng của một sản phẩm     |
+|3. Cập nhật số lượng của một sản phẩm      |
 |4. Xóa sản phẩm khỏi giỏ hàng              |
 |5.Thoát trương trình                       |
 =============================================
@@ -79,22 +79,13 @@ while True:
                     cart_items.append(new_product)
         case '3':
             pro_id = input('nhập mã sản phẩm: ')
-            pro_name = input('nhập tên sản phẩm: ')
             while True:
-                pro_number = input('nhập số lượng sản phẩm: ')
+                pro_number = input('nhập số lượng sản phẩm muốn cập nhật: ')
                 if pro_number.isdigit():
                     pro_number =int(pro_number)
                     break
                 else:
                     print('không hợp lệ vui lòng nhập lại số lượng')
-                    continue
-            while True:
-                pro_price = input('nhập giá sản phẩm: ')
-                if pro_price.isdigit():
-                    pro_price =int(pro_number)
-                    break
-                else:
-                    print('không hợp lệ vui lòng nhập lại giá')
                     continue
 
             found = False
@@ -105,13 +96,22 @@ while True:
                     print('cập nhật thành công')
                     found = True
                     break
-
                 if not found:
                     print('không tồn tại')
-                    
-                    cart_items.append(new_product)
+                    break
         case '4':
-            print()
+            pro_id = input('nhập mã sản phẩm cần xóa: ')
+            found = False
+            for index,value in enumerate(cart_items):
+                if pro_id == value.get("id"):
+                    print('có tồn tại tiến hành xóa!')
+                    cart_items.pop(index)
+                    print('xóa thành công')
+                    found = True
+                    break
+                if not found:
+                    print('không tồn tại')
+                    break
         case '5':
             print("thoát trương trình")
             break
