@@ -28,7 +28,7 @@ while True:
                     break
                 print("Tên không được để trống!")
 
-                salary_new = float(input('nhập lương vào'))
+            salary_new = float(input('nhập lương vào'))
                 
         case '2':
             if len(staff_company) != 0:
