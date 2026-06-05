@@ -35,13 +35,20 @@ while True:
                         break
                 print("Lương phải là số nguyên lớn hơn 0!")
 
-                staff_company.append({
-                    "id": str(new_id),
+            staff_company.append({
+                "id": str(new_id),
                 "name": name,
                 "salary": salary_new
-                })
+            })
 
-            print("Thêm nhân viên thành công!")             
+            print("Thêm nhân viên thành công!")
+        case '2':
+            if len(staff_company) != 0:
+                    print(f'{'id':<7}|{'tên':<15}|{'lương':<15}')
+                    for index,value in enumerate(staff_company):
+                        print(f'{value.get('id'):<7}|{value.get('name'):<15}|{value.get('salary'):<15}')
+            else:
+                print('Chưa có dữ liệu nhân sự')             
         case '3':
             del_id = input("Nhập vào id cần xóa: ") 
             found = False; 
