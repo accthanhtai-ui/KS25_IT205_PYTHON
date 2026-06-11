@@ -117,7 +117,6 @@ def main():
     while True:
         menu(users)
         choice = input("vui lòng chọn chức năng: ")
-
         match choice:
             case '1':
                 display_user(users)
